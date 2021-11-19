@@ -1,15 +1,21 @@
-import { createGlobalStyle } from "styled-components";
-import reset from "styled-reset";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-const GlobalStyles = createGlobalStyle`
-  ${reset}
-`;
+import GlobalStyle from "./lib/GlobalStyle";
+import Landing from "./pages/Landing";
+import Login from "./pages/Login";
+import Main from "./pages/Main";
 
 function App() {
   return (
     <>
-      <GlobalStyles />
-      <div>Hello, World!</div>
+      <GlobalStyle />
+      <Router>
+        <Switch>
+          <Route exact path="/" component={Landing} />
+          <Route path="/login" component={Login} />
+          <Route path="/main" component={Main} />
+        </Switch>
+      </Router>
     </>
   );
 }
