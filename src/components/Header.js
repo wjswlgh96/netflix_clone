@@ -15,7 +15,6 @@ const HeaderContainer = styled.header`
 `;
 
 const HeaderWrapper = styled.div`
-  height: 5em;
   display: flex;
   position: fixed;
   top: 0;
