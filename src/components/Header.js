@@ -8,134 +8,126 @@ import { Search } from "@styled-icons/boxicons-regular/Search";
 import { BellFill } from "@styled-icons/bootstrap/BellFill";
 import { useEffect, useState } from "react";
 
-const HeaderContainer = styled.header`
-  width: 100vw;
-  font-size: 1vw;
-  z-index: 10;
-`;
-
-const HeaderWrapper = styled.div`
-  display: flex;
-  position: fixed;
-  top: 0;
+const Container = styled.div`
+  width: 100%;
   background-color: transparent;
-  padding: 0 3em;
-  transition: background-color 0.2s ease-in-out;
+  display: flex;
+  z-index: 5;
+  position: fixed;
+  justify-content: center;
 
   ${(props) => {
     if (props.isScroll) {
       return `
-            background-color: black;
+        background-color: black;
+        transition: all 0.2s ease-in-out;
+      `;
+    } else {
+      return `
+        background-color: transparent;
+        transition: all 0.2s ease-in-out;
       `;
     }
   }}
 `;
 
-const LogoWrapper = styled.div`
-  width: 8%;
-  margin: 0 2em 0 0;
-  line-height: 7em;
+const Wrapper = styled.div`
+  width: 92.5%;
+  margin: 1.5rem auto;
+  display: flex;
 `;
 
-const LogoLink = styled(Link)`
-  height: 100%;
-`;
-
-const LogoImg = styled.img`
+const ImageWrapper = styled.div`
+  flex: 1;
   width: 100%;
 `;
 
+const Image = styled.img`
+  width: 73%;
+`;
+
+const LogoLink = styled(Link)``;
+
 const MenuWrapper = styled.div`
-  width: 80%;
-  color: #e5e5e5;
-  margin: 0 0 0 0;
-  line-height: 5.3em;
+  flex: 6;
+  width: 100%;
 `;
 
-const MenuUl = styled.ul`
-  display: flex;
-  flex-direction: row;
-`;
+const MenuButton = styled.span`
+  color: #d3d3d3;
+  margin-right: 1.5rem;
+  line-height: 2.5rem;
 
-const MenuLi = styled.li`
-  list-style: none;
-  font-size: 0.95em;
-  font-weight: 350;
-  margin: 0 1em;
-
-  &:hover {
+  &: hover {
     cursor: pointer;
-    opacity: 0.5;
+    color: #b3b3b3;
   }
 `;
 
-const MenuNaviWrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-  color: #ffffff;
+const NavWrapper = styled.div`
+  width: 100%;
+  flex: 3;
+  color: white;
+  white-space: nowrap;
+  text-align: right;
+`;
+
+const NavButton = styled.div`
+  display: inline;
+  width: 15%;
+  line-height: 2rem;
+  margin-right: 2rem;
+`;
+
+const NavSearch = styled(Search)`
   width: 10%;
-  line-height: 5em;
+  display: inline;
+  margin-right: 2rem;
 `;
 
-const SearchIcons = styled(Search)`
-  width: 15%;
-  height: 100%;
+const NavBell = styled(BellFill)`
+  width: 10%;
+  display: inline;
+  margin-right: 1rem;
 `;
 
-const BellIcons = styled(BellFill)`
-  width: 15%;
-  height: 100%;
-`;
-
-const KidsLink = styled(Link)`
-  text-decoration: none;
-  font-size: 0.95em;
-  font-weight: 350;
-  color: #ffffff;
-`;
-
-function Header() {
+export default function Header() {
+  const [scrollY, setScrollY] = useState(window.scrollY);
   const [isScroll, setIsScroll] = useState(false);
 
   useEffect(() => {
-    const scrollEvent = window.addEventListener("scroll", () => {
-      const scrollY = window.scrollY;
-
-      if (scrollY > 0) {
-        setIsScroll(true);
-      } else {
-        setIsScroll(false);
-      }
+    window.addEventListener("scroll", () => {
+      setScrollY(window.scrollY);
     });
+  });
 
-    return () => {
-      window.removeEventListener("scroll", scrollEvent);
-    };
-  }, [isScroll]);
+  useEffect(() => {
+    if (scrollY > 0) {
+      setIsScroll(true);
+    } else {
+      setIsScroll(false);
+    }
+  }, [scrollY]);
 
   return (
-    <HeaderContainer>
-      <HeaderWrapper isScroll={isScroll}>
-        <LogoWrapper>
-          <LogoLink to="/">
-            <LogoImg src={Logo} />
+    <Container isScroll={isScroll}>
+      <Wrapper>
+        <ImageWrapper>
+          <LogoLink to="/main">
+            <Image src={Logo} />
           </LogoLink>
-        </LogoWrapper>
+        </ImageWrapper>
         <MenuWrapper>
-          <MenuUl>
-            {headerList.map((el, idx) => {
-              return <MenuLi key={idx}>{el}</MenuLi>;
-            })}
-          </MenuUl>
+          {headerList.map((el, idx) => {
+            return <MenuButton key={idx}>{el}</MenuButton>;
+          })}
         </MenuWrapper>
-        <MenuNaviWrapper>
-          <SearchIcons />
-          <KidsLink to="/">키즈</KidsLink>
-          <BellIcons />
-        </MenuNaviWrapper>
-      </HeaderWrapper>
-    </HeaderContainer>
+        <NavWrapper>
+          <NavSearch size="1.7vw" />
+          <NavButton>키즈</NavButton>
+          <NavBell size="1.8vw" />
+        </NavWrapper>
+      </Wrapper>
+    </Container>
   );
 }
-
-export default Header;

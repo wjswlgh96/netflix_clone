@@ -20,7 +20,7 @@ const Image = styled.img``;
 
 const ImageGradient = styled.div`
   position: absolute;
-  height: 38.8vw;
+  height: 37.9vw;
   top: 0;
   left: 0;
   border-bottom: 8px solid #222;

@@ -4,6 +4,7 @@ import GlobalStyle from "./lib/GlobalStyle";
 import Landing from "./pages/Landing";
 import Login from "./pages/Login";
 import Main from "./pages/Main";
+import Play from "./pages/Play";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Route exact path="/" component={Landing} />
           <Route path="/login" component={Login} />
           <Route path="/main" component={Main} />
+          <Route path="/play" component={Play} />
         </Switch>
       </Router>
     </>

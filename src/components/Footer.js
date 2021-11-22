@@ -1,12 +1,9 @@
 import styled from "styled-components";
 
-import Selector from "./Selector";
 import { footerData } from "../dummydata/dummyDatas";
 
 const FooterMain = styled.footer`
-  width: 98.95vw;
-  background-color: black;
-  overflow: hidden;
+  width: 100%;
 `;
 
 const FooterContainer = styled.div`
@@ -15,6 +12,7 @@ const FooterContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  background-color: black;
   color: #757575;
   font-size: 1vw;
 `;
@@ -53,12 +51,25 @@ const FooterLastDiv = styled.div`
   font-size: 1.02em;
 `;
 
-function Footer({ loginOpacity }) {
+const NavSelector = styled.select`
+  width: 15%;
+  background-color: rgba(0, 0, 0, 0.4);
+  border: 1px solid #aaa;
+  border-radius: 2px;
+  color: white;
+  margin: 0 2rem 1.1rem 0;
+  padding: 1rem 0.6rem 1rem 2.3rem;
+  font-size: 1.4rem;
+`;
+
+const NavOption = styled.option``;
+
+export default function Footer({ loginOpacity }) {
   return (
     <>
       {loginOpacity ? (
-        <FooterMain style={{ backgroundColor: "rgba(0, 0, 0, 0.7)" }}>
-          <FooterContainer>
+        <FooterMain>
+          <FooterContainer style={{ backgroundColor: "rgba(0, 0, 0, 0.7)" }}>
             <FooterWrapper>
               <FooterParagraph>
                 질문이 있으신가요? 문의 전화: 080-001-9587
@@ -68,7 +79,10 @@ function Footer({ loginOpacity }) {
                   return <FooterLi key={idx}>{el}</FooterLi>;
                 })}
               </FooterUl>
-              <Selector isHeaders={false}></Selector>
+              <NavSelector>
+                <NavOption value="한국어">한국어</NavOption>
+                <NavOption value="English">English</NavOption>
+              </NavSelector>
               <FooterParagraph>넷플릭스 대한민국</FooterParagraph>
               <FooterLastDiv>
                 넷플릭스서비시스코리아 유한회사 통신판매업신고번호:
@@ -102,7 +116,10 @@ function Footer({ loginOpacity }) {
                   return <FooterLi key={idx}>{el}</FooterLi>;
                 })}
               </FooterUl>
-              <Selector isHeaders={false}></Selector>
+              <NavSelector>
+                <NavOption value="한국어">한국어</NavOption>
+                <NavOption value="English">English</NavOption>
+              </NavSelector>
               <FooterParagraph style={{ fontSize: "1em" }}>
                 넷플릭스 대한민국
               </FooterParagraph>
@@ -130,5 +147,3 @@ function Footer({ loginOpacity }) {
     </>
   );
 }
-
-export default Footer;

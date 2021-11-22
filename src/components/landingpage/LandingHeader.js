@@ -54,10 +54,15 @@ const LoginButton = styled.button`
 `;
 
 export default function LandingHeader() {
+  const onClick = (e) => {
+    e.preventDefault();
+    window.location.replace("/login");
+  };
+
   return (
     <Container>
       <LogoContainer>
-        <LogoLink>
+        <LogoLink to="/">
           <LogoImage src={Logo} />
         </LogoLink>
       </LogoContainer>
@@ -66,7 +71,9 @@ export default function LandingHeader() {
           <NavOption value="한국어">한국어</NavOption>
           <NavOption value="영어">English</NavOption>
         </NavSelector>
-        <LoginButton value="로그인">로그인</LoginButton>
+        <LoginButton onClick={onClick} value="로그인">
+          로그인
+        </LoginButton>
       </NavContainer>
     </Container>
   );

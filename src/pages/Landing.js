@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 
 import { landingData } from "../dummydata/dummyDatas";
+
 import LandingHeader from "../components/landingpage/LandingHeader";
 import LandingIntro from "../components/landingpage/LandingIntro";
 import LandingVideo from "../components/landingpage/LandingVideo";
@@ -18,6 +19,10 @@ const IntroContainer = styled.div`
 `;
 
 function Landing() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <>
       <Container>
