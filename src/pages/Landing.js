@@ -11,7 +11,10 @@ import LandingAccordion from "../components/landingpage/LandingAccordion";
 import Footer from "../components/Footer";
 
 const Container = styled.div`
+  display: block;
   width: 100%;
+  height: 100vh;
+  overflow-y: initial;
 `;
 
 const IntroContainer = styled.div`
@@ -24,49 +27,47 @@ function Landing() {
   }, []);
 
   return (
-    <>
-      <Container>
-        <LandingHeader />
-        <IntroContainer>
-          <LandingIntro />
-        </IntroContainer>
-        {landingData.map((el, idx) => {
-          if (idx % 2 !== 0) {
-            return (
-              <LandingContent
-                key={idx}
-                title={el.title}
-                subTitle={el.subTitle}
-                imageSrc={el.imageSrc}
-              />
-            );
-          } else if (idx === 2) {
-            return (
-              <LandingVideo
-                key={idx}
-                isThird={true}
-                title={el.title}
-                subTitle={el.subTitle}
-                imageSrc={el.imageSrc}
-                videoSrc={el.videoSrc}
-              />
-            );
-          } else {
-            return (
-              <LandingVideo
-                key={idx}
-                title={el.title}
-                subTitle={el.subTitle}
-                imageSrc={el.imageSrc}
-                videoSrc={el.videoSrc}
-              />
-            );
-          }
-        })}
-        <LandingAccordion />
-        <Footer></Footer>
-      </Container>
-    </>
+    <Container>
+      <LandingHeader />
+      <IntroContainer>
+        <LandingIntro />
+      </IntroContainer>
+      {landingData.map((el, idx) => {
+        if (idx % 2 !== 0) {
+          return (
+            <LandingContent
+              key={idx}
+              title={el.title}
+              subTitle={el.subTitle}
+              imageSrc={el.imageSrc}
+            />
+          );
+        } else if (idx === 2) {
+          return (
+            <LandingVideo
+              key={idx}
+              isThird={true}
+              title={el.title}
+              subTitle={el.subTitle}
+              imageSrc={el.imageSrc}
+              videoSrc={el.videoSrc}
+            />
+          );
+        } else {
+          return (
+            <LandingVideo
+              key={idx}
+              title={el.title}
+              subTitle={el.subTitle}
+              imageSrc={el.imageSrc}
+              videoSrc={el.videoSrc}
+            />
+          );
+        }
+      })}
+      <LandingAccordion />
+      <Footer></Footer>
+    </Container>
   );
 }
 

@@ -10,7 +10,8 @@ import { users } from "../dummydata/dummyDatas";
 
 const Container = styled.div`
   width: 100%;
-  overflow: hidden;
+  height: 100%;
+  overflow-y: auto;
 `;
 
 function Login() {

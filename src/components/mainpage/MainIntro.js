@@ -1,21 +1,22 @@
 import styled from "styled-components";
 
 import { PlayFill } from "@styled-icons/bootstrap/PlayFill";
-import { InfoCircle } from "@styled-icons/boxicons-regular/InfoCircle";
 import { InfoCircleFill } from "@styled-icons/bootstrap";
 
 const Container = styled.div`
   width: 100%;
-  overflow: hidden;
+  position: relative;
 `;
 
 const IntroImageWrapper = styled.div`
+  z-index: 0;
   position: absolute;
   top: 0;
   left: 0;
+  bottom: 0;
+  right: 0;
   width: 100%;
   background-color: black;
-  overflow: hidden;
 `;
 
 const IntroImage = styled.img`
@@ -24,22 +25,22 @@ const IntroImage = styled.img`
 
 const LeftImageGradient = styled.div`
   position: absolute;
-  height: 56.3vw;
+  height: 47.9vw;
   top: 0;
   left: 0;
-  background: rgba(0, 0, 0, 0.1);
+  background: rgba(0, 0, 0, 0.2);
   background-image: linear-gradient(
     to left,
-    rgba(0, 0, 0, 0.7) 0,
+    rgba(0, 0, 0, 0.9) 0,
     rgba(0, 0, 0, 0) 10%,
     rgba(0, 0, 0, 0) 90%,
-    rgba(0, 0, 0, 0.7) 100%
+    rgba(0, 0, 0, 0.9) 100%
   );
 `;
 
 const TopImageGradient = styled.div`
   position: absolute;
-  height: 56.3vw;
+  height: 47.9vw;
   top: 0;
   left: 0;
   background: rgba(0, 0, 0, 0.1);

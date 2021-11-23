@@ -6,43 +6,67 @@ import PlayList from "../components/mainpage/PlayList";
 import MainIntro from "../components/mainpage/MainIntro";
 import Information from "./Information";
 
-import { movies, mainTitle } from "../dummydata/dummyDatas";
+import { mainTitle } from "../dummydata/dummyDatas";
 import { useState } from "react";
 
 const Container = styled.div`
   width: 100%;
-  overflow: hidden;
+  height: 100%;
+  overflow-y: scroll;
 `;
 
-function Main() {
-  const [movieList, setMovieList] = useState(movies);
+function Main({ movieList }) {
+  const [isScroll, setIsScroll] = useState(false);
   const [isModal, setIsModal] = useState(false);
+  const [currIdx, setCurrIdx] = useState(-1);
 
-  console.log(isModal);
+  const onScroll = (e) => {
+    if (e.target.scrollTop > 0) {
+      setIsScroll(true);
+    } else {
+      setIsScroll(false);
+    }
+  };
 
   return (
-    <>
+    <Container onScroll={onScroll}>
       {isModal ? (
-        <Container>
-          <Information />
-          <Header />
+        <>
+          <Information movie={movieList[currIdx]} setIsModal={setIsModal} />
+          <Header isScroll={isScroll} />
           <MainIntro setIsModal={setIsModal} />
           {mainTitle.map((el, idx) => {
-            return <PlayList key={idx} titleValue={el} movieList={movieList} />;
+            return (
+              <PlayList
+                key={idx}
+                setIsModal={setIsModal}
+                setCurrIdx={setCurrIdx}
+                titleValue={el}
+                movieList={movieList}
+              />
+            );
           })}
           <Footer />
-        </Container>
+        </>
       ) : (
-        <Container>
-          <Header />
+        <>
+          <Header isScroll={isScroll} />
           <MainIntro setIsModal={setIsModal} />
           {mainTitle.map((el, idx) => {
-            return <PlayList key={idx} titleValue={el} movieList={movieList} />;
+            return (
+              <PlayList
+                key={idx}
+                setIsModal={setIsModal}
+                setCurrIdx={setCurrIdx}
+                titleValue={el}
+                movieList={movieList}
+              />
+            );
           })}
           <Footer />
-        </Container>
+        </>
       )}
-    </>
+    </Container>
   );
 }
 

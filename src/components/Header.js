@@ -9,7 +9,7 @@ import { BellFill } from "@styled-icons/bootstrap/BellFill";
 import { useEffect, useState } from "react";
 
 const Container = styled.div`
-  width: 100%;
+  width: 99.4%;
   background-color: transparent;
   display: flex;
   z-index: 5;
@@ -91,24 +91,7 @@ const NavBell = styled(BellFill)`
   margin-right: 1rem;
 `;
 
-export default function Header() {
-  const [scrollY, setScrollY] = useState(window.scrollY);
-  const [isScroll, setIsScroll] = useState(false);
-
-  useEffect(() => {
-    window.addEventListener("scroll", () => {
-      setScrollY(window.scrollY);
-    });
-  });
-
-  useEffect(() => {
-    if (scrollY > 0) {
-      setIsScroll(true);
-    } else {
-      setIsScroll(false);
-    }
-  }, [scrollY]);
-
+export default function Header({ isScroll }) {
   return (
     <Container isScroll={isScroll}>
       <Wrapper>

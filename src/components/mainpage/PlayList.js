@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -6,16 +6,16 @@ import styled from "styled-components";
 
 import { NavigateNext } from "@styled-icons/material-outlined/NavigateNext";
 import { KeyboardArrowLeft } from "@styled-icons/material-twotone/KeyboardArrowLeft";
-import { SpeakerDeckDimensions } from "@styled-icons/fa-brands/SpeakerDeck";
 
 const Container = styled.div`
   width: 100%;
-  overflow: hidden;
+  position: relative;
   background-color: black;
 `;
 
 const Wrapper = styled.div`
   width: 95%;
+  position: relative;
   margin-left: 3.7rem;
   display: flex;
   flex-direction: column;
@@ -29,6 +29,10 @@ const TitleWrapper = styled.div`
 
 const SliderWrapper = styled.div`
   width: 100%;
+
+  :hover {
+    cursor: pointer;
+  }
 `;
 
 const _Slider = styled(Slider)`
@@ -74,11 +78,13 @@ const _Slider = styled(Slider)`
 `;
 
 const ImageWrapper = styled.div`
+  position: relative;
   width: 100%;
   border-radius: 4px;
 `;
 
 const Image = styled.img`
+  position: relative;
   width: 16%;
 `;
 
@@ -92,7 +98,7 @@ const RightImage = styled(NavigateNext)`
   height: 6.5vw;
 `;
 
-function PlayList({ titleValue, movieList, setIsModal }) {
+function PlayList({ setCurrIdx, titleValue, movieList, setIsModal }) {
   const [isHover, setIsHover] = useState(false);
 
   const onMouseEnter = (e) => {
@@ -103,6 +109,12 @@ function PlayList({ titleValue, movieList, setIsModal }) {
   const onMouseLeave = (e) => {
     e.preventDefault();
     setIsHover(false);
+  };
+
+  const onClickImage = (e, idx) => {
+    e.preventDefault();
+    setIsModal(true);
+    setCurrIdx(idx);
   };
 
   const settings = {
@@ -117,27 +129,25 @@ function PlayList({ titleValue, movieList, setIsModal }) {
   };
 
   return (
-    <>
-      <Container>
-        <Wrapper>
-          <TitleWrapper>{titleValue}</TitleWrapper>
-          <SliderWrapper
-            onMouseEnter={onMouseEnter}
-            onMouseLeave={onMouseLeave}
-          >
-            <_Slider {...settings}>
-              {movieList.map((el, idx) => {
-                return (
-                  <ImageWrapper key={idx}>
-                    <Image src={el.image} />
-                  </ImageWrapper>
-                );
-              })}
-            </_Slider>
-          </SliderWrapper>
-        </Wrapper>
-      </Container>
-    </>
+    <Container>
+      <Wrapper>
+        <TitleWrapper>{titleValue}</TitleWrapper>
+        <SliderWrapper onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
+          <_Slider {...settings}>
+            {movieList.map((el, idx) => {
+              return (
+                <ImageWrapper key={idx}>
+                  <Image
+                    onClick={(e) => onClickImage(e, idx)}
+                    src={el.listimage}
+                  />
+                </ImageWrapper>
+              );
+            })}
+          </_Slider>
+        </SliderWrapper>
+      </Wrapper>
+    </Container>
   );
 }
 

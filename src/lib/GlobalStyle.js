@@ -1,5 +1,4 @@
 import { createGlobalStyle } from "styled-components";
-import { reset } from "styled-reset";
 
 const GlobalStyle = createGlobalStyle`
     * {
@@ -9,10 +8,10 @@ const GlobalStyle = createGlobalStyle`
         text-decoration: none;
         list-style: none;
         font-size: 1vw;
-        overflow-x: hidden;
+        overflow: hidden;
         z-index: 0;
         border: 0;
-        outline: 0;
+        outline: 0;   
     }
 `;
 

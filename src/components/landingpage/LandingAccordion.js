@@ -110,14 +110,14 @@ export default function LandingAccordion() {
         {accordionData.map((el, idx) => {
           return (
             <>
-              <AccordionTitleWrapper>
-                <AccordionButton key={idx} onClick={(e) => onClick(e, idx)}>
+              <AccordionTitleWrapper key={idx}>
+                <AccordionButton onClick={(e) => onClick(e, idx)}>
                   {el.title}
                 </AccordionButton>
                 {isFocus && currIndex === idx ? (
-                  <AccordionSpan>x</AccordionSpan>
+                  <AccordionSpan key={idx}>x</AccordionSpan>
                 ) : (
-                  <AccordionSpan>+</AccordionSpan>
+                  <AccordionSpan key={idx}>+</AccordionSpan>
                 )}
               </AccordionTitleWrapper>
               <AccordionContent
