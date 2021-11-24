@@ -6,6 +6,7 @@ import styled from "styled-components";
 
 import { NavigateNext } from "@styled-icons/material-outlined/NavigateNext";
 import { KeyboardArrowLeft } from "@styled-icons/material-twotone/KeyboardArrowLeft";
+import HoverImage from "./HoverImage";
 
 const Container = styled.div`
   width: 100%;
@@ -14,8 +15,7 @@ const Container = styled.div`
 `;
 
 const Wrapper = styled.div`
-  width: 95%;
-  position: relative;
+  width: 100%;
   margin-left: 3.7rem;
   display: flex;
   flex-direction: column;
@@ -29,20 +29,15 @@ const TitleWrapper = styled.div`
 
 const SliderWrapper = styled.div`
   width: 100%;
-
-  :hover {
-    cursor: pointer;
-  }
 `;
 
 const _Slider = styled(Slider)`
   width: 100%;
-  padding-top: 1.5rem;
 
   .slick-arrow {
     z-index: 5;
     width: 10vw;
-    height: 15vh;
+    height: 6vw;
 
     :hover {
       color: white;
@@ -53,10 +48,39 @@ const _Slider = styled(Slider)`
     }
   }
 
+  .slick-next {
+    left: 88%;
+    top: 30%;
+  }
+
+  .slick-prev {
+    top: 30%;
+  }
+
+  .slick-list {
+    width: 100%;
+  }
+
+  .slick-slide {
+    width: 100%;
+
+    padding: 1.5rem 0;
+
+    :hover {
+      transform: scale(1.2);
+      transition: transform 0.2s ease-in-out;
+    }
+
+    :out {
+      transform: scale(1);
+      transition: transform 0.2s ease-in-out;
+    }
+  }
+
   .slick-dots {
     position: absolute;
     left: 89%;
-    top: -3%;
+    top: -1%;
     width: 10%;
     height: 10%;
     color: #ffffff;
@@ -73,19 +97,16 @@ const _Slider = styled(Slider)`
       color: #e9e9e9;
     }
   }
-
-  margin-bottom: 2rem;
 `;
 
 const ImageWrapper = styled.div`
-  position: relative;
   width: 100%;
-  border-radius: 4px;
+  z-index: 10;
 `;
 
 const Image = styled.img`
-  position: relative;
   width: 16%;
+  border-radius: 4px;
 `;
 
 const LeftImage = styled(KeyboardArrowLeft)`
@@ -100,6 +121,8 @@ const RightImage = styled(NavigateNext)`
 
 function PlayList({ setCurrIdx, titleValue, movieList, setIsModal }) {
   const [isHover, setIsHover] = useState(false);
+  const [isImgHover, setImgHover] = useState(false);
+  const [currImgIdx, setCurrImgIdx] = useState(-1);
 
   const onMouseEnter = (e) => {
     e.preventDefault();
@@ -113,8 +136,19 @@ function PlayList({ setCurrIdx, titleValue, movieList, setIsModal }) {
 
   const onClickImage = (e, idx) => {
     e.preventDefault();
-    setIsModal(true);
-    setCurrIdx(idx);
+  };
+
+  const onMouseEnterImg = (e, idx) => {
+    e.preventDefault();
+    setImgHover(true);
+    setCurrImgIdx(idx);
+  };
+
+  const onMouseLeaveImg = (e) => {
+    console.log("bye");
+    e.preventDefault();
+    setImgHover(false);
+    setCurrImgIdx(-1);
   };
 
   const settings = {
@@ -136,11 +170,24 @@ function PlayList({ setCurrIdx, titleValue, movieList, setIsModal }) {
           <_Slider {...settings}>
             {movieList.map((el, idx) => {
               return (
-                <ImageWrapper key={idx}>
-                  <Image
-                    onClick={(e) => onClickImage(e, idx)}
-                    src={el.listimage}
-                  />
+                <ImageWrapper
+                  key={idx}
+                  onMouseEnter={(e) => onMouseEnterImg(e, idx)}
+                  onMouseLeave={onMouseLeaveImg}
+                >
+                  {isImgHover && idx === currImgIdx ? (
+                    <HoverImage
+                      setCurrIdx={setCurrIdx}
+                      setIsModal={setIsModal}
+                      imageSrc={el.listimage}
+                      movie={el}
+                    />
+                  ) : (
+                    <Image
+                      onClick={(e) => onClickImage(e, idx)}
+                      src={el.listimage}
+                    />
+                  )}
                 </ImageWrapper>
               );
             })}

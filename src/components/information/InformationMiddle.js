@@ -1,8 +1,6 @@
 import styled from "styled-components";
 
 const Container = styled.div`
-  position: relative;
-  top: -12.1vw;
   width: 100%;
   background-color: #141414;
 `;
@@ -23,8 +21,8 @@ const Gradient = styled.div`
   left: 0;
   background-image: linear-gradient(
     to top,
-    rgba(0, 0, 0, 0) 60%,
-    rgba(0, 0, 0, 1) 100%
+    rgba(14, 14, 14, 0) 0%,
+    rgba(14, 14, 14, 1) 100%
   );
 `;
 
@@ -62,10 +60,39 @@ const TitleAge = styled.div`
   display: inline-block;
   width: 6%;
   border-radius: 3px;
-  background-color: rgba(255, 0, 0, 0.7);
   color: white;
   padding: 0.2rem 0.24rem 0 0.2rem;
   margin-right: 0.5rem;
+
+  ${(props) => {
+    if (props.age === "18") {
+      return `
+        background-color: rgba(255, 0, 0, 0.7);
+      `;
+    } else if (props.age === "15") {
+      return `
+        background-color: #E06F20;
+        color: white;
+      `;
+    } else if (props.age === "12") {
+      return `
+        background-color: rgba(255, 255, 0, 0.7);
+        color: black;
+      `;
+    } else if (props.age === "19+" || props.age === "15+") {
+      return `
+        border: 1px solid rgba(255, 255, 255, 0.4);
+        color: white;
+        font-size: .7rem;
+        padding: .1rem .3rem 0 .4rem;
+      `;
+    } else {
+      return `
+        background-color: rgba(0, 255, 0, 0.7);
+        color: white;
+      `;
+    }
+  }}
 `;
 
 const TitleSeason = styled.span`
@@ -80,7 +107,7 @@ const TitleHD = styled.span`
   border: 1px solid white;
   border-radius: 2px;
   color: white;
-  padding: 0.1rem 0.2rem 0;
+  padding: 0.1rem 0.2rem 0 0.3rem;
 `;
 
 const Title = styled.div`
@@ -117,6 +144,23 @@ const RightTag = styled.span`
 const RightTagContent = styled.span`
   color: white;
   font-size: 0.59rem;
+
+  :hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+`;
+
+const MoreLink = styled.span`
+  color: white;
+  font-size: 0.62rem;
+  font-style: italic;
+  margin-left: 0.2rem;
+
+  :hover {
+    cursor: pointer;
+    text-decoration: underline;
+  }
 `;
 
 export default function InformationMiddle({ movie }) {
@@ -128,48 +172,68 @@ export default function InformationMiddle({ movie }) {
           <LeftTitle>
             <TitleSpanNew>{movie.like}</TitleSpanNew>
             <TitleYear>{movie.year}</TitleYear>
-            <TitleAge>18</TitleAge>
-            <TitleSeason>{movie.season}</TitleSeason>
+            <TitleAge age={movie.age[0]}>{movie.age[0]}</TitleAge>
+            {movie.season === null ? (
+              <TitleSeason>{movie.playtime}</TitleSeason>
+            ) : (
+              <TitleSeason>시즌 {movie.season} 개</TitleSeason>
+            )}
+
             {movie.HD ? <TitleHD>HD</TitleHD> : null}
           </LeftTitle>
-          <Title>오늘 대한민국에서 콘텐츠 순위 {movie.ranking}위</Title>
+          {movie.ranking <= 10 ? (
+            <Title>오늘 대한민국에서 콘텐츠 순위 {movie.ranking}위</Title>
+          ) : null}
           <SubTitle>{movie.content}</SubTitle>
         </LeftWrapper>
         <RightWrapper>
-          <RightTagWrapper>
-            <RightTag>출연: </RightTag>
-            {movie.actor.map((el, idx) => {
-              if (idx <= 1) {
-                return <RightTagContent key={idx}>{el}, </RightTagContent>;
-              } else if (idx === 2) {
-                return <RightTagContent key={idx}>{el}</RightTagContent>;
-              }
-            })}
-          </RightTagWrapper>
-          <RightTagWrapper>
-            <RightTag>장르: </RightTag>
-            {movie.genre.map((el, idx) => {
-              if (idx === movie.genre.length - 1) {
-                return <RightTagContent key={idx}>{el}</RightTagContent>;
-              } else {
-                return <RightTagContent key={idx}>{el}, </RightTagContent>;
-              }
-            })}
-          </RightTagWrapper>
-          <RightTagWrapper>
-            {movie.character.length > 0 ? (
-              <>
-                <RightTag>프로그램 특징: </RightTag>
-                {movie.character.map((el, idx) => {
-                  if (idx === movie.character.length - 1) {
-                    return <RightTagContent>{el}</RightTagContent>;
-                  } else {
-                    return <RightTagContent>{el}, </RightTagContent>;
-                  }
-                })}
-              </>
-            ) : null}
-          </RightTagWrapper>
+          {movie.actor.length > 0 ? (
+            <RightTagWrapper>
+              <RightTag>출연: </RightTag>
+              {movie.actor.map((el, idx) => {
+                if (idx <= 2) {
+                  return <RightTagContent key={idx}>{el}, </RightTagContent>;
+                }
+              })}
+              <MoreLink>더 보기</MoreLink>
+            </RightTagWrapper>
+          ) : null}
+          {movie.genre.length > 0 ? (
+            <RightTagWrapper>
+              <RightTag>장르: </RightTag>
+              {movie.genre.length < 3
+                ? movie.genre.map((el, idx) => {
+                    if (idx === movie.genre.length - 1) {
+                      return <RightTagContent key={idx}>{el}</RightTagContent>;
+                    } else {
+                      return (
+                        <RightTagContent key={idx}>{el}, </RightTagContent>
+                      );
+                    }
+                  })
+                : movie.genre.map((el, idx) => {
+                    if (idx <= 1) {
+                      return (
+                        <RightTagContent key={idx}>{el}, </RightTagContent>
+                      );
+                    } else if (idx === 2) {
+                      return <RightTagContent key={idx}>{el}</RightTagContent>;
+                    }
+                  })}{" "}
+            </RightTagWrapper>
+          ) : null}
+          {movie.character.length > 0 ? (
+            <RightTagWrapper>
+              <RightTag>프로그램 특징: </RightTag>
+              {movie.character.map((el, idx) => {
+                if (idx === movie.character.length - 1) {
+                  return <RightTagContent>{el}</RightTagContent>;
+                } else {
+                  return <RightTagContent>{el}, </RightTagContent>;
+                }
+              })}
+            </RightTagWrapper>
+          ) : null}
         </RightWrapper>
       </Wrapper>
     </Container>

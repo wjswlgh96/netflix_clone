@@ -138,7 +138,7 @@ const InfoImage = styled(InfoCircleFill)`
   width: 40%;
 `;
 
-export default function MainIntro({ setIsModal }) {
+export default function MainIntro({ setIsModal, setCurrIdx }) {
   const onClickPlayButton = (e) => {
     e.preventDefault();
 
@@ -148,6 +148,7 @@ export default function MainIntro({ setIsModal }) {
   const onClickInfoButton = (e) => {
     e.preventDefault();
     setIsModal(true);
+    setCurrIdx(1);
   };
 
   return (

@@ -34,7 +34,7 @@ function Main({ movieList }) {
         <>
           <Information movie={movieList[currIdx]} setIsModal={setIsModal} />
           <Header isScroll={isScroll} />
-          <MainIntro setIsModal={setIsModal} />
+          <MainIntro setIsModal={setIsModal} setCurrIdx={setCurrIdx} />
           {mainTitle.map((el, idx) => {
             return (
               <PlayList
@@ -51,7 +51,7 @@ function Main({ movieList }) {
       ) : (
         <>
           <Header isScroll={isScroll} />
-          <MainIntro setIsModal={setIsModal} />
+          <MainIntro setIsModal={setIsModal} setCurrIdx={setCurrIdx} />
           {mainTitle.map((el, idx) => {
             return (
               <PlayList

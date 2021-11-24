@@ -9,6 +9,7 @@ import { SpeakerMute } from "@styled-icons/fluentui-system-regular/SpeakerMute";
 
 const Container = styled.div`
   width: 100%;
+  z-index: 10;
 `;
 
 const Wrapper = styled.div`
@@ -19,7 +20,7 @@ const Wrapper = styled.div`
 
 const ImageWrapper = styled.div`
   width: 100%;
-  position: relative;
+  position: absolute;
 `;
 
 const Image = styled.img`
@@ -28,20 +29,22 @@ const Image = styled.img`
 
 const TopImageGradient = styled.div`
   position: absolute;
-  height: 100%;
+  z-index: 0;
+  width: 100%;
+  height: 99%;
   top: 0;
   left: 0;
   background-image: linear-gradient(
     to bottom,
-    rgba(0, 0, 0, 0) 60%,
-    rgba(0, 0, 0, 1) 100%
+    rgba(14, 14, 14, 0) 60%,
+    rgba(14, 14, 14, 1) 100%
   );
 `;
 
 const CloseWrapper = styled.div`
   width: 100%;
   position: relative;
-  top: -21.5vw;
+  top: 1vw;
   display: flex;
   justify-content: flex-end;
 `;
@@ -63,10 +66,7 @@ const TitleWrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 90%;
-  margin: auto;
-  position: relative;
-
-  top: -15vw;
+  margin: 9.6rem auto 1rem;
 `;
 
 const TopTitleWrapper = styled.div`
