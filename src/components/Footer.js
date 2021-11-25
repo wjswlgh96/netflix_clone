@@ -14,17 +14,46 @@ const FooterContainer = styled.div`
   justify-content: center;
   background-color: black;
   color: #757575;
-  font-size: 1vw;
+
+  ${(props) => {
+    if (props.loginOpacity) {
+      return `
+      background-color: rgba(0, 0, 0, 0.7);
+
+      @media screen and (max-width: 767px) {
+        background-color: black;
+      }
+      `;
+    }
+  }}
 `;
 
 const FooterWrapper = styled.div`
   width: 60%;
   margin: 4em 0;
+
+  @media screen and (max-width: 1023px) {
+    width: 80%;
+    margin: 6em 0;
+  }
+
+  @media screen and (max-width: 767px) {
+    width: 90%;
+  }
 `;
 
 const FooterParagraph = styled.p`
   font-size: 1.2em;
   margin: 1em 0;
+
+  @media screen and (max-width: 1023px) {
+    font-size: 1.8em;
+  }
+
+  @media screen and (max-width: 767px) {
+    font-size: 2em;
+    margin: 2em 0;
+  }
 `;
 
 const FooterUl = styled.ul`
@@ -44,11 +73,27 @@ const FooterLi = styled.li`
     text-decoration: underline;
     cursor: pointer;
   }
+
+  @media screen and (max-width: 1023px) {
+    font-size: 1.5em;
+  }
+
+  @media screen and (max-width: 767px) {
+    font-size: 1.8em;
+  }
 `;
 
 const FooterLastDiv = styled.div`
   line-height: 1.5em;
-  font-size: 1.02em;
+  font-size: 1.02rem;
+
+  @media screen and (max-width: 1023px) {
+    font-size: 1.3em;
+  }
+
+  @media screen and (max-width: 767px) {
+    font-size: 1.6em;
+  }
 `;
 
 const NavSelector = styled.select`
@@ -60,6 +105,18 @@ const NavSelector = styled.select`
   margin: 0 2rem 1.1rem 0;
   padding: 1rem 0.6rem 1rem 2.3rem;
   font-size: 1.4rem;
+
+  @media screen and (max-width: 1023px) {
+    padding: 2rem 0 2rem 3rem;
+    font-size: 1.6rem;
+  }
+
+  @media screen and (max-width: 767px) {
+    width: 20%;
+    padding: 2rem 0 2rem 4rem;
+    font-size: 1.8rem;
+    margin-bottom: 0;
+  }
 `;
 
 const NavOption = styled.option``;
@@ -69,7 +126,7 @@ export default function Footer({ loginOpacity }) {
     <>
       {loginOpacity ? (
         <FooterMain>
-          <FooterContainer style={{ backgroundColor: "rgba(0, 0, 0, 0.7)" }}>
+          <FooterContainer loginOpacity={loginOpacity}>
             <FooterWrapper>
               <FooterParagraph>
                 질문이 있으신가요? 문의 전화: 080-001-9587
@@ -120,10 +177,8 @@ export default function Footer({ loginOpacity }) {
                 <NavOption value="한국어">한국어</NavOption>
                 <NavOption value="English">English</NavOption>
               </NavSelector>
-              <FooterParagraph style={{ fontSize: "1em" }}>
-                넷플릭스 대한민국
-              </FooterParagraph>
-              <FooterLastDiv style={{ fontSize: ".9em" }}>
+              <FooterParagraph>넷플릭스 대한민국</FooterParagraph>
+              <FooterLastDiv>
                 넷플릭스서비시스코리아 유한회사 통신판매업신고번호:
                 제2018-서울종로-0426호 전화번호: 080-001-9587
                 <br />

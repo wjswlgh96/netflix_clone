@@ -163,7 +163,12 @@ const MoreLink = styled.span`
   }
 `;
 
-export default function InformationMiddle({ movie }) {
+export default function InformationMiddle({ setIsOther, movie }) {
+  const onClickOther = (e) => {
+    e.preventDefault();
+    setIsOther(true);
+  };
+
   return (
     <Container>
       <Gradient></Gradient>
@@ -181,7 +186,7 @@ export default function InformationMiddle({ movie }) {
 
             {movie.HD ? <TitleHD>HD</TitleHD> : null}
           </LeftTitle>
-          {movie.ranking <= 10 ? (
+          {movie.ranking ? (
             <Title>오늘 대한민국에서 콘텐츠 순위 {movie.ranking}위</Title>
           ) : null}
           <SubTitle>{movie.content}</SubTitle>
@@ -195,7 +200,7 @@ export default function InformationMiddle({ movie }) {
                   return <RightTagContent key={idx}>{el}, </RightTagContent>;
                 }
               })}
-              <MoreLink>더 보기</MoreLink>
+              <MoreLink onClick={onClickOther}>더 보기</MoreLink>
             </RightTagWrapper>
           ) : null}
           {movie.genre.length > 0 ? (
@@ -227,9 +232,9 @@ export default function InformationMiddle({ movie }) {
               <RightTag>프로그램 특징: </RightTag>
               {movie.character.map((el, idx) => {
                 if (idx === movie.character.length - 1) {
-                  return <RightTagContent>{el}</RightTagContent>;
+                  return <RightTagContent key={idx}>{el}</RightTagContent>;
                 } else {
-                  return <RightTagContent>{el}, </RightTagContent>;
+                  return <RightTagContent key={idx}>{el}, </RightTagContent>;
                 }
               })}
             </RightTagWrapper>

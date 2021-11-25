@@ -21,6 +21,14 @@ const ImageWrapper = styled.div`
 const Image = styled.img`
   width: 16%;
   border-top-right-radius: 4px;
+
+  @media screen and (max-width: 1023px) {
+    width: 23%;
+  }
+
+  @media screen and (max-width: 767px) {
+    width: 28%;
+  }
 `;
 
 const Wrapper = styled.div`
@@ -47,6 +55,18 @@ const PlayImage = styled(PlayFill)`
   background-color: white;
   border-radius: 45px;
   background-color: white;
+
+  :hover {
+    cursor: pointer;
+  }
+
+  @media screen and (max-width: 1023px) {
+    width: 3%;
+  }
+
+  @media screen and (max-width: 767px) {
+    width: 4%;
+  }
 `;
 
 const PlusImage = styled(Plus)`
@@ -61,6 +81,14 @@ const PlusImage = styled(Plus)`
   :hover {
     cursor: pointer;
     border-color: white;
+  }
+
+  @media screen and (max-width: 1023px) {
+    width: 2%;
+  }
+
+  @media screen and (max-width: 767px) {
+    width: 3%;
   }
 `;
 
@@ -77,6 +105,14 @@ const LikeImage = styled(Like)`
     cursor: pointer;
     border-color: white;
   }
+
+  @media screen and (max-width: 1023px) {
+    width: 2%;
+  }
+
+  @media screen and (max-width: 767px) {
+    width: 3%;
+  }
 `;
 
 const DislikeImage = styled(Dislike)`
@@ -92,6 +128,15 @@ const DislikeImage = styled(Dislike)`
     cursor: pointer;
     border-color: white;
   }
+
+  @media screen and (max-width: 1023px) {
+    margin-right: 7rem;
+    width: 2%;
+  }
+
+  @media screen and (max-width: 767px) {
+    width: 3%;
+  }
 `;
 
 const DownImage = styled(ArrowDown)`
@@ -105,6 +150,14 @@ const DownImage = styled(ArrowDown)`
   :hover {
     cursor: pointer;
     border-color: white;
+  }
+
+  @media screen and (max-width: 1023px) {
+    width: 2%;
+  }
+
+  @media screen and (max-width: 767px) {
+    width: 3%;
   }
 `;
 
@@ -160,6 +213,14 @@ const TitleAge = styled.div`
       `;
     }
   }};
+
+  @media screen and (max-width: 1023px) {
+    width: 1.5%;
+  }
+
+  @media screen and (max-width: 767px) {
+    width: 2%;
+  }
 `;
 
 const TitleTime = styled.span`
@@ -181,6 +242,14 @@ const TitleHD = styled.span`
 const GenreWrapper = styled.div`
   width: 18%;
   margin-top: 0.5rem;
+
+  @media screen and (max-width: 1023px) {
+    width: 25%;
+  }
+
+  @media screen and (max-width: 767px) {
+    width: 31%;
+  }
 `;
 
 const GenreContent = styled.span`
@@ -199,7 +268,8 @@ export default function HoverImage({
   setIsModal,
 }) {
   const onClickDown = (e) => {
-    setCurrIdx(movie.id - 1);
+    e.preventDefault();
+    setCurrIdx(movie.id);
     setIsModal(true);
   };
 
@@ -211,7 +281,12 @@ export default function HoverImage({
       <Wrapper>
         <IconWrapper>
           <IconContent>
-            <PlayImage />
+            <PlayImage
+              onClick={(e) => {
+                e.preventDefault();
+                window.location.replace(movie.link);
+              }}
+            />
             <PlusImage />
             <LikeImage />
             <DislikeImage />
@@ -231,9 +306,9 @@ export default function HoverImage({
         <GenreWrapper>
           {movie.genre
             ? movie.genre.map((el, idx) => {
-                if (idx <= 1) {
+                if (idx < movie.genre.length - 1) {
                   return <GenreContent key={idx}>{el}, </GenreContent>;
-                } else if (idx === 2) {
+                } else if (idx === movie.genre.length - 1) {
                   return <GenreContent key={idx}>{el}</GenreContent>;
                 }
               })

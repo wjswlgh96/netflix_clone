@@ -7,7 +7,7 @@ import MainIntro from "../components/mainpage/MainIntro";
 import Information from "./Information";
 
 import { mainTitle } from "../dummydata/dummyDatas";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const Container = styled.div`
   width: 100%;
@@ -32,7 +32,12 @@ function Main({ movieList }) {
     <Container onScroll={onScroll}>
       {isModal ? (
         <>
-          <Information movie={movieList[currIdx]} setIsModal={setIsModal} />
+          <Information
+            movie={movieList.filter((el) => {
+              return el.id === currIdx;
+            })}
+            setIsModal={setIsModal}
+          />
           <Header isScroll={isScroll} />
           <MainIntro setIsModal={setIsModal} setCurrIdx={setCurrIdx} />
           {mainTitle.map((el, idx) => {

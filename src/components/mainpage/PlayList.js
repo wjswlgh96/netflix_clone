@@ -15,7 +15,7 @@ const Container = styled.div`
 `;
 
 const Wrapper = styled.div`
-  width: 100%;
+  width: 99%;
   margin-left: 3.7rem;
   display: flex;
   flex-direction: column;
@@ -25,6 +25,14 @@ const TitleWrapper = styled.div`
   width: 100%;
   color: white;
   font-size: 1.5rem;
+
+  @media screen and (max-width: 1023px) {
+    font-size: 2.5rem;
+  }
+
+  @media screen and (max-width: 767px) {
+    font-size: 3rem;
+  }
 `;
 
 const SliderWrapper = styled.div`
@@ -37,7 +45,7 @@ const _Slider = styled(Slider)`
   .slick-arrow {
     z-index: 5;
     width: 10vw;
-    height: 6vw;
+    height: 7vw;
 
     :hover {
       color: white;
@@ -64,11 +72,19 @@ const _Slider = styled(Slider)`
   .slick-slide {
     width: 100%;
 
-    padding: 1.5rem 0;
+    padding: 2rem 0 2rem 0;
 
     :hover {
       transform: scale(1.2);
       transition: transform 0.2s ease-in-out;
+
+      @media screen and (max-width: 1023px) {
+        padding: 2rem;
+      }
+
+      @media screen and (max-width: 767px) {
+        padding: 2.5rem;
+      }
     }
 
     :out {
@@ -96,7 +112,77 @@ const _Slider = styled(Slider)`
     button::before {
       color: #e9e9e9;
     }
+
+    @media screen and (max-width: 1023px) {
+      left: 85%;
+      top: -1.5%;
+    }
+
+    @media screen and (max-width: 767px) {
+      width: 20%;
+      left: 77%;
+      top: -2%;
+    }
   }
+
+  ${(props) => {
+    if (!props.isImgHover) {
+      return `
+        .slick-next {
+          top: 50%;
+        }
+
+        .slick-prev {
+          top: 50%;
+        }
+      `;
+    }
+  }}
+
+  ${(props) => {
+    switch (props.currImgIdx) {
+      case 0: {
+        return `
+        .slick-slide {
+          :hover {
+            transform: scale(1.2) translate(50px, 0);
+            transition: transform 0.2s ease-in-out;
+          }
+        }
+        `;
+      }
+      case 5: {
+        return `
+        .slick-slide {
+          :hover {
+            transform: scale(1.2) translate(-100px, 0);
+            transition: transform 0.2s ease-in-out;
+          }
+        }
+        `;
+      }
+      case 6: {
+        return `
+        .slick-slide {
+          :hover {
+            transform: scale(1.2) translate(50px, 0);
+            transition: transform 0.2s ease-in-out;
+          }
+        }
+        `;
+      }
+      case 11: {
+        return `
+        .slick-slide {
+          :hover {
+            transform: scale(1.2) translate(-100px, 0);
+            transition: transform 0.2s ease-in-out;
+          }
+        }
+        `;
+      }
+    }
+  }}
 `;
 
 const ImageWrapper = styled.div`
@@ -107,6 +193,14 @@ const ImageWrapper = styled.div`
 const Image = styled.img`
   width: 16%;
   border-radius: 4px;
+
+  @media screen and (max-width: 1023px) {
+    width: 23%;
+  }
+
+  @media screen and (max-width: 767px) {
+    width: 28%;
+  }
 `;
 
 const LeftImage = styled(KeyboardArrowLeft)`
@@ -160,6 +254,22 @@ function PlayList({ setCurrIdx, titleValue, movieList, setIsModal }) {
     arrows: isHover,
     nextArrow: <RightImage />,
     prevArrow: <LeftImage />,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 4,
+          slidesToScroll: 4,
+        },
+      },
+      {
+        breakpoint: 769,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+        },
+      },
+    ],
   };
 
   return (
@@ -167,7 +277,11 @@ function PlayList({ setCurrIdx, titleValue, movieList, setIsModal }) {
       <Wrapper>
         <TitleWrapper>{titleValue}</TitleWrapper>
         <SliderWrapper onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
-          <_Slider {...settings}>
+          <_Slider
+            {...settings}
+            isImgHover={isImgHover}
+            currImgIdx={currImgIdx}
+          >
             {movieList.map((el, idx) => {
               return (
                 <ImageWrapper

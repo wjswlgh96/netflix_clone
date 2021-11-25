@@ -4,6 +4,15 @@ import LandingForm from "./LandingForm";
 
 const Container = styled.div`
   width: 100%;
+  border-bottom: 8px solid #222;
+
+  @media screen and (max-width: 1023px) {
+    max-height: 200vw;
+  }
+
+  @media screen and (max-width: 767px) {
+    max-height: 200vw;
+  }
 `;
 
 const ImageContainer = styled.div`
@@ -12,18 +21,29 @@ const ImageContainer = styled.div`
   top: 0;
   left: 0;
   z-index: -10;
+
+  @media screen and (max-width: 1023px) {
+    width: 102%;
+  }
+
+  @media screen and (max-width: 767px) {
+    width: 200%;
+  }
 `;
 
-const ImageWrapper = styled.div``;
+const ImageWrapper = styled.div`
+  width: 100%;
+`;
 
-const Image = styled.img``;
+const Image = styled.img`
+  width: 100%;
+`;
 
 const ImageGradient = styled.div`
   position: absolute;
-  height: 67.4%;
+  height: 50vw;
   top: 0;
-  left: 0;
-  border-bottom: 8px solid #222;
+
   background: rgba(0, 0, 0, 0.4);
   background-image: linear-gradient(
     to top,
@@ -31,6 +51,14 @@ const ImageGradient = styled.div`
     rgba(0, 0, 0, 0) 60%,
     rgba(0, 0, 0, 0.8) 100%
   );
+
+  @media screen and (max-width: 1023px) {
+    height: 58vw;
+  }
+
+  @media screen and (max-width: 767px) {
+    height: 110vw;
+  }
 `;
 
 const ContentContainer = styled.div`
@@ -41,6 +69,16 @@ const ContentContainer = styled.div`
   text-align: center;
   margin: 8rem auto 10rem;
   color: white;
+
+  @media screen and (max-width: 1023px) {
+    width: 80%;
+    margin: 10rem auto 10rem;
+  }
+
+  @media screen and (max-width: 767px) {
+    width: 95%;
+    margin: 20rem auto 20rem;
+  }
 `;
 
 const Title = styled.h1`
@@ -48,6 +86,16 @@ const Title = styled.h1`
   font-size: 2.8rem;
   letter-spacing: 0.2rem;
   margin-bottom: 1rem;
+
+  @media screen and (max-width: 1023px) {
+    font-size: 4.8rem;
+    margin-bottom: 1.5rem;
+  }
+
+  @media screen and (max-width: 767px) {
+    font-size: 6rem;
+    margin-bottom: 2.5rem;
+  }
 `;
 
 const SubTitle = styled.h2`
@@ -55,6 +103,17 @@ const SubTitle = styled.h2`
   font-size: 1.2rem;
   font-weight: 400;
   margin-bottom: 1.5rem;
+
+  @media screen and (max-width: 1023px) {
+    font-size: 2.5rem;
+    font-weight: 300;
+  }
+
+  @media screen and (max-width: 767px) {
+    width: 78%;
+    font-size: 3.4rem;
+    margin-bottom: 3rem;
+  }
 `;
 
 export default function LandingIntro() {
@@ -75,7 +134,7 @@ export default function LandingIntro() {
         <SubTitle>
           다양한 디바이스에서 시청하세요. 언제든 해지하실 수 있습니다.
         </SubTitle>
-        <LandingForm />
+        <LandingForm isLabelTop={true} />
       </ContentContainer>
     </Container>
   );

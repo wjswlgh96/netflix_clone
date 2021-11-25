@@ -21,11 +21,20 @@ const Title = styled.div`
   text-align: center;
   margin: 4rem auto 3.4rem;
   color: white;
+
+  @media screen and (max-width: 1023px) {
+    font-size: 5rem;
+    margin: 8rem auto 5rem;
+  }
 `;
 
 const AccordionContainer = styled.div`
   width: 60%;
   color: white;
+
+  @media screen and (max-width: 1023px) {
+    width: 75%;
+  }
 `;
 
 const AccordionTitleWrapper = styled.div`
@@ -46,6 +55,13 @@ const AccordionButton = styled.button`
   text-align: left;
   padding: 1.7rem 2rem;
   font-size: 1.7rem;
+
+  @media screen and (max-width: 1023px) {
+    width: 100%;
+    font-size: 2.6rem;
+    font-weight: 300;
+    padding: 2.3rem 3rem;
+  }
 `;
 
 const AccordionSpan = styled.span`
@@ -55,6 +71,12 @@ const AccordionSpan = styled.span`
   left: -1.5%;
   font-size: 2rem;
   line-height: 5.5rem;
+
+  @media screen and (max-width: 1023px) {
+    font-size: 4rem;
+    font-weight: 300;
+    top: 1.5vw;
+  }
 `;
 
 const AccordionContent = styled.p`
@@ -65,7 +87,7 @@ const AccordionContent = styled.p`
   margin-bottom: 0.7rem;
   font-size: 1.7rem;
   color: white;
-  white-space: pre;
+  white-space: pre-wrap;
   overflow: hidden;
 
   ${(props) => {
@@ -75,13 +97,23 @@ const AccordionContent = styled.p`
         padding: 1.7rem 0.6rem 1.7rem 2rem;
         max-height: 20rem;
         transition: max-height 0.2s ease-in-out;
+
+        @media screen and (max-width: 1023px) {
+          font-size: 2.5rem;
+          line-height: 3.5rem;
+          width: 87.5%;
+          font-weight: 300;
+          padding: 2rem 3rem 2rem 3rem;
+          max-height: 40rem;
+          white-space: pre-wrap;
+        }
       `;
     }
   }}
 `;
 
 const FormContainer = styled.div`
-  width: 50%;
+  width: 100%;
   margin: 4rem auto;
 `;
 

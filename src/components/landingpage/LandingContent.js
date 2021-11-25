@@ -15,6 +15,16 @@ const Wrapper = styled.div`
   align-items: center;
   margin-top: 3rem;
   margin-bottom: 3rem;
+
+  @media screen and (max-width: 1023px) {
+    width: 90%;
+    margin: 5rem auto;
+  }
+
+  @media screen and (max-width: 767px) {
+    display: flex;
+    flex-direction: column;
+  }
 `;
 
 const TextContainer = styled.div`
@@ -22,30 +32,66 @@ const TextContainer = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  flex: 5.1;
+  flex: 5;
 `;
 
 const SourceContainer = styled.div`
   position: relative;
   display: flex;
-  flex: 4.9;
+  flex: 5;
 `;
 
 const Title = styled.h1`
   width: 80%;
-  font-size: 2.5rem;
+  font-size: 2.2rem;
   margin-bottom: 1.5rem;
-  white-space: pre;
+  white-space: pre-wrap;
+
+  @media screen and (max-width: 1023px) {
+    width: 90%;
+    font-size: 4.7rem;
+    font-weight: 500;
+  }
+
+  @media screen and (max-width: 767px) {
+    width: 80%;
+    font-size: 5rem;
+    margin-bottom: 3rem;
+    text-align: center;
+  }
 `;
 
 const SubTitle = styled.div`
   width: 80%;
-  font-size: 1.2rem;
-  white-space: pre;
+  font-size: 1.17rem;
+  white-space: pre-wrap;
+
+  @media screen and (max-width: 1023px) {
+    width: 90%;
+    font-size: 2.4rem;
+    font-weight: 300;
+  }
+
+  @media screen and (max-width: 767px) {
+    width: 80%;
+    text-align: center;
+    font-size: 2.6rem;
+    font-weight: 400;
+  }
 `;
 
 const Image = styled.img`
   width: 80%;
+
+  @media screen and (max-width: 1023px) {
+    width: 95%;
+  }
+
+  @media screen and (max-width: 767px) {
+    margin: auto;
+    margin-bottom: 4rem;
+    width: 80%;
+  }
 `;
 
 export default function LandingContent({ title, subTitle, imageSrc }) {

@@ -9,7 +9,7 @@ import { BellFill } from "@styled-icons/bootstrap/BellFill";
 import { useEffect, useState } from "react";
 
 const Container = styled.div`
-  width: 99.4%;
+  width: 99.3%;
   background-color: transparent;
   display: flex;
   z-index: 5;

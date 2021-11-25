@@ -11,10 +11,9 @@ import LandingAccordion from "../components/landingpage/LandingAccordion";
 import Footer from "../components/Footer";
 
 const Container = styled.div`
-  display: block;
   width: 100%;
-  height: 100vh;
-  overflow-y: initial;
+  height: 100%;
+  overflow-y: auto;
 `;
 
 const IntroContainer = styled.div`

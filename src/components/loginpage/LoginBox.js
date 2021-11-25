@@ -7,6 +7,11 @@ import { users } from "../../dummydata/dummyDatas.js";
 const Container = styled.div`
   width: 100%;
   overflow: hidden;
+
+  @media screen and (max-width: 767px) {
+    background-color: black;
+    border-bottom: 1px solid white;
+  }
 `;
 
 const Wrapper = styled.div`
@@ -16,6 +21,15 @@ const Wrapper = styled.div`
   margin: 1rem auto 10rem;
   flex-direction: column;
   padding: 4rem;
+
+  @media screen and (max-width: 1023px) {
+    width: 30%;
+  }
+
+  @media screen and (max-width: 767px) {
+    width: 90%;
+    margin: auto;
+  }
 `;
 
 const Title = styled.div`
@@ -24,6 +38,15 @@ const Title = styled.div`
   font-size: 2.5rem;
   color: white;
   margin-bottom: 2rem;
+
+  @media screen and (max-width: 1023px) {
+    font-size: 3.3rem;
+    font-weight: 400;
+  }
+
+  @media screen and (max-width: 767px) {
+    font-size: 4rem;
+  }
 `;
 
 const FormWrapper = styled.div`
@@ -47,10 +70,21 @@ const InputID = styled.input`
   ${(props) => {
     if (props.isFocusID || props.valueID) {
       return `
-            border-bottom: 2px solid #E87C03;
-          `;
+        border-bottom: 2px solid #E87C03;
+      `;
     }
   }}
+
+  @media screen and (max-width: 1023px) {
+    width: 90%;
+    padding: 2rem 1.5rem 1rem 1.5rem;
+    font-size: 1.75rem;
+  }
+
+  @media screen and (max-width: 767px) {
+    width: 96.5%;
+    padding: 3.5rem 0 1rem 3rem;
+  }
 `;
 
 const InputPW = styled.input`
@@ -68,6 +102,17 @@ const InputPW = styled.input`
       `;
     }
   }}
+
+  @media screen and (max-width: 1023px) {
+    width: 90%;
+    padding: 2rem 1.5rem 1rem 1.5rem;
+    font-size: 1.75rem;
+  }
+
+  @media screen and (max-width: 767px) {
+    width: 96.5%;
+    padding: 3.5rem 0 1rem 3rem;
+  }
 `;
 
 const IDLabel = styled.label`
@@ -77,18 +122,43 @@ const IDLabel = styled.label`
   left: 5%;
   color: #8c8c8c;
 
+  @media screen and (max-width: 1023px) {
+    font-size: 1.75rem;
+    top: 3.7vw;
+  }
+
   ${(props) => {
     if (props.isFocusID || props.valueID) {
       return `
             top: 1.5vw;
             font-size: .8rem;
             transition: all 0.2s ease-in-out;
+
+            @media screen and (max-width: 1023px) {
+              font-size: 1.1rem;
+              top: 2vw;
+            }
+
+            @media screen and (max-width: 767px) {
+              left: 3.4%;
+              top: 2.5vw;
+            }
           `;
     } else {
       return `
             top: 2.4vw;
             font-size: 1rem;
             transition: all 0.2s ease-in-out;
+
+            @media screen and (max-width: 1023px) {
+              font-size: 1.75rem;
+              top: 3.7vw;
+            }
+
+            @media screen and (max-width: 767px) {
+              top: 4.5vw;
+              left: 3.4%;
+            }
         `;
     }
   }}
@@ -101,18 +171,43 @@ const PWLabel = styled.label`
   left: 5%;
   color: #8c8c8c;
 
+  @media screen and (max-width: 1023px) {
+    font-size: 1.75rem;
+    top: 3.7vw;
+  }
+
   ${(props) => {
     if (props.isFocusPW || props.valuePW) {
       return `
             top: 1.5vw;
             font-size: .8rem;
             transition: all 0.2s ease-in-out;
+
+            @media screen and (max-width: 1023px) {
+              font-size: 1.1rem;
+              top: 2vw;
+            }
+
+            @media screen and (max-width: 767px) {
+              left: 3.4%;
+              top: 2.5vw;
+            }
           `;
     } else {
       return `
             top: 2.4vw;
             font-size: 1rem;
             transition: all 0.2s ease-in-out;
+
+            @media screen and (max-width: 1023px) {
+              font-size: 1.75rem;
+              top: 3.7vw;
+            }
+
+            @media screen and (max-width: 767px) {
+              top: 4.5vw;
+              left: 3.4%;
+            }
         `;
     }
   }}
@@ -125,6 +220,15 @@ const LoginButton = styled.button`
   padding: 1.1rem 1rem;
   border-radius: 4px;
   font-size: 1.18rem;
+
+  @media screen and (max-width: 1023px) {
+    font-size: 1.6rem;
+    padding: 1.5rem 1rem;
+  }
+
+  @media screen and (max-width: 767px) {
+    font-size: 2.5rem;
+  }
 `;
 
 const FormBottomWrapper = styled.div`
@@ -136,14 +240,28 @@ const FormBottomWrapper = styled.div`
 const FormCheckboxWrapper = styled.div`
   width: 100%;
   display: flex;
+  justify-content: flex-start;
 `;
 
 const FormCheckbox = styled.input`
   width: 100%;
+
+  @media screen and (max-width: 767px) {
+    width: 15%;
+    margin-right: 1rem;
+  }
 `;
 
 const FormCheckboxLabel = styled.label`
   color: #b3b3b3;
+
+  @media screen and (max-width: 1023px) {
+    font-size: 1.3rem;
+  }
+
+  @media screen and (max-width: 767px) {
+    font-size: 1.8rem;
+  }
 `;
 
 const FormLinkWrapper = styled.div`
@@ -153,6 +271,14 @@ const FormLinkWrapper = styled.div`
 
 const FormLink = styled(Link)`
   color: #b3b3b3;
+
+  @media screen and (max-width: 1023px) {
+    font-size: 1.3rem;
+  }
+
+  @media screen and (max-width: 767px) {
+    font-size: 1.8rem;
+  }
 `;
 
 const HomeLinkWrapper = styled.div`
@@ -164,11 +290,27 @@ const HomeLinkContent = styled.span`
   color: #b3b3b3;
   font-size: 1.15rem;
   margin-right: 0.5rem;
+
+  @media screen and (max-width: 1023px) {
+    font-size: 1.5rem;
+  }
+
+  @media screen and (max-width: 767px) {
+    font-size: 2.5rem;
+  }
 `;
 
 const HomeLink = styled(Link)`
   color: white;
   font-size: 1.15rem;
+
+  @media screen and (max-width: 1023px) {
+    font-size: 1.5rem;
+  }
+
+  @media screen and (max-width: 767px) {
+    font-size: 2.5rem;
+  }
 `;
 
 export default function LoginBox() {
@@ -261,7 +403,6 @@ export default function LoginBox() {
                 로그인
               </LoginButton>
             )}
-
             <FormBottomWrapper>
               <FormCheckboxWrapper>
                 <FormCheckbox type="checkbox"></FormCheckbox>

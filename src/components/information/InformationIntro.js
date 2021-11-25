@@ -229,7 +229,12 @@ export default function InformationIntro({ movie, setIsModal = () => {} }) {
           </TopTitleWrapper>
           <BottomTitleWrapper>
             <BottomLeftWrapper>
-              <PlayButton>
+              <PlayButton
+                onClick={(e) => {
+                  e.preventDefault();
+                  window.location.replace(movie.link);
+                }}
+              >
                 <PlayImage />
                 <PlaySpan>재생</PlaySpan>
               </PlayButton>

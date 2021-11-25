@@ -25,7 +25,7 @@ const IntroImage = styled.img`
 
 const LeftImageGradient = styled.div`
   position: absolute;
-  height: 47.9vw;
+  height: 48.1vw;
   top: 0;
   left: 0;
   background: rgba(0, 0, 0, 0.2);
@@ -36,11 +36,15 @@ const LeftImageGradient = styled.div`
     rgba(0, 0, 0, 0) 90%,
     rgba(0, 0, 0, 0.9) 100%
   );
+
+  @media screen and (max-width: 767px) {
+    height: 50vw;
+  }
 `;
 
 const TopImageGradient = styled.div`
   position: absolute;
-  height: 47.9vw;
+  height: 48.1vw;
   top: 0;
   left: 0;
   background: rgba(0, 0, 0, 0.1);
@@ -51,6 +55,10 @@ const TopImageGradient = styled.div`
     rgba(0, 0, 0, 0) 90%,
     rgba(0, 0, 0, 1) 100%
   );
+
+  @media screen and (max-width: 767px) {
+    height: 50vw;
+  }
 `;
 
 const IntroContentWrapper = styled.div`
@@ -109,6 +117,10 @@ const PlayButton = styled.button`
     cursor: pointer;
     background-color: #bbbbbb;
   }
+
+  @media screen and (max-width: 767px) {
+    width: 10%;
+  }
 `;
 
 const PlayImage = styled(PlayFill)`
@@ -132,6 +144,10 @@ const InfoButton = styled.button`
     cursor: pointer;
     background-color: #6b6b6c91;
   }
+
+  @media screen and (max-width: 767px) {
+    width: 13%;
+  }
 `;
 
 const InfoImage = styled(InfoCircleFill)`
@@ -148,7 +164,7 @@ export default function MainIntro({ setIsModal, setCurrIdx }) {
   const onClickInfoButton = (e) => {
     e.preventDefault();
     setIsModal(true);
-    setCurrIdx(1);
+    setCurrIdx(2);
   };
 
   return (

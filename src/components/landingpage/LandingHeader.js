@@ -10,6 +10,15 @@ const Container = styled.div`
   margin: auto;
   background-color: transparent;
   padding-top: 1rem;
+
+  @media screen and (max-width: 1023px) {
+    width: 90%;
+    margin: 1.5rem auto;
+  }
+
+  @media screen and (max-width: 767px) {
+    margin: 2rem auto;
+  }
 `;
 
 const LogoContainer = styled.div``;
@@ -18,14 +27,30 @@ const LogoLink = styled(Link)``;
 
 const LogoImage = styled.img`
   width: 9rem;
+
+  @media screen and (max-width: 1023px) {
+    width: 14rem;
+  }
+
+  @media screen and (max-width: 767px) {
+    width: 16rem;
+  }
 `;
 
 const NavContainer = styled.div`
-  width: 15%;
+  width: 20%;
   display: flex;
   justify-content: flex-end;
   margin: auto;
   margin-right: 1rem;
+
+  @media screen and (max-width: 1023px) {
+    width: 30%;
+  }
+
+  @media screen and (max-width: 767px) {
+    width: 50%;
+  }
 `;
 
 const NavSelector = styled.select`
@@ -37,6 +62,19 @@ const NavSelector = styled.select`
   margin-right: 2rem;
   padding: 0.4rem 0.6rem;
   font-size: 0.75rem;
+
+  @media screen and (max-width: 1023px) {
+    width: 45%;
+    padding: 0.8rem 1.4rem;
+    font-size: 1.3rem;
+    margin-right: 3rem;
+  }
+
+  @media screen and (max-width: 767px) {
+    width: 40%;
+    padding: 1rem 1.4rem;
+    font-size: 1.8rem;
+  }
 `;
 
 const NavOption = styled.option`
@@ -51,6 +89,17 @@ const LoginButton = styled.button`
   border-radius: 0.2rem;
   padding: 0 0.6rem;
   font-size: 0.8rem;
+
+  @media screen and (max-width: 1023px) {
+    width: 40%;
+    padding: 0.8rem;
+    font-size: 1.5rem;
+  }
+
+  @media screen and (max-width: 767px) {
+    width: 35%;
+    font-size: 1.8rem;
+  }
 `;
 
 export default function LandingHeader() {

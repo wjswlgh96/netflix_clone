@@ -2,6 +2,10 @@ import styled from "styled-components";
 
 const Container = styled.div`
   width: 100%;
+
+  @media screen and (max-width: 767px) {
+    display: none;
+  }
 `;
 
 const ImageContainer = styled.div`

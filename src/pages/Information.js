@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import styled from "styled-components";
 
 import InformationIntro from "../components/information/InformationIntro";
@@ -39,6 +39,23 @@ const Wrapper = styled.div`
 
 function Information({ setIsModal, movie }) {
   const [isEnter, setIsEnter] = useState(false);
+  const [isOther, setIsOther] = useState(false);
+  const scrollY = useRef();
+
+  useEffect(() => {
+    if (isOther) {
+      let time = 0;
+      const ScrollTime = setInterval(() => {
+        scrollY.current.scrollTop += 50;
+        time += 100;
+
+        if (time >= 3000) {
+          setIsOther(false);
+          clearInterval(ScrollTime);
+        }
+      }, 10);
+    }
+  }, [isOther]);
 
   const onClick = (e) => {
     e.preventDefault();
@@ -59,12 +76,12 @@ function Information({ setIsModal, movie }) {
   };
 
   return (
-    <Container onClick={onClick}>
+    <Container ref={scrollY} isOther={isOther} onClick={onClick}>
       <Wrapper onMouseOver={onOver} onMouseOut={onOut}>
-        <InformationIntro movie={movie} setIsModal={setIsModal} />
-        <InformationMiddle movie={movie} />
-        <InformationEpisode movie={movie} />
-        <InformationFooter movie={movie} />
+        <InformationIntro movie={movie[0]} setIsModal={setIsModal} />
+        <InformationMiddle setIsOther={setIsOther} movie={movie[0]} />
+        <InformationEpisode movie={movie[0]} />
+        <InformationFooter movie={movie[0]} />
       </Wrapper>
     </Container>
   );

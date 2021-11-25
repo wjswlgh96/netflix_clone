@@ -15,6 +15,16 @@ const Wrapper = styled.div`
   align-items: center;
   margin-top: 1rem;
   margin-bottom: 3rem;
+
+  @media screen and (max-width: 1023px) {
+    width: 90%;
+
+    margin: 5rem auto;
+  }
+
+  @media screen and (max-width: 767px) {
+    flex-direction: column;
+  }
 `;
 
 const TextContainer = styled.div`
@@ -33,18 +43,54 @@ const SourceContainer = styled.div`
 `;
 
 const Title = styled.h1`
-  width: 80%;
-  font-size: 2.5rem;
+  width: 60%;
+  font-size: 2.2rem;
   margin-bottom: 1rem;
+
+  @media screen and (max-width: 1023px) {
+    width: 100%;
+    font-size: 5rem;
+    font-weight: 500;
+  }
+
+  @media screen and (max-width: 767px) {
+    margin-top: 5rem;
+    margin-bottom: 3rem;
+    font-size: 5.5rem;
+    font-weight: bold;
+    text-align: center;
+  }
 `;
 
 const SubTitle = styled.div`
-  width: 80%;
-  font-size: 1.3rem;
+  width: 60%;
+  font-size: 1.05rem;
+
+  @media screen and (max-width: 1023px) {
+    width: 100%;
+    font-size: 2.6rem;
+    font-weight: 300;
+  }
+
+  @media screen and (max-width: 767px) {
+    font-size: 2.9rem;
+    width: 72%;
+    text-align: center;
+  }
 `;
 
 const Image = styled.img`
   width: 85%;
+
+  @media screen and (max-width: 1023px) {
+    width: 100%;
+  }
+
+  @media screen and (max-width: 767px) {
+    margin: auto;
+    margin-bottom: 5rem;
+    width: 80%;
+  }
 `;
 
 const Video = styled.video`
@@ -53,6 +99,38 @@ const Video = styled.video`
   z-index: -5;
   left: 11%;
   top: 21%;
+
+  @media screen and (max-width: 1023px) {
+    width: 72.5%;
+    left: 13.4%;
+  }
+
+  @media screen and (max-width: 767px) {
+    width: 58%;
+    left: 20.8%;
+    top: 19%;
+  }
+
+  ${(props) => {
+    if (props.isThird) {
+      return `
+        width: 55%; 
+        top: 11%;
+        left: 15%;
+
+        @media screen and (max-width: 1023px) {
+          width: 65%;
+          left: 17%;
+        }
+
+        @media screen and (max-width: 767px) {
+          width: 48%;
+          left: 28%;
+          top: 10%;
+        }
+      `;
+    }
+  }}
 `;
 
 const Source = styled.source`
@@ -73,27 +151,12 @@ export default function LandingVideo({
           <Title>{title}</Title>
           <SubTitle>{subTitle}</SubTitle>
         </TextContainer>
-        {isThird ? (
-          <SourceContainer>
-            <Image src={imageSrc} />
-            <Video
-              style={{ width: "55%", top: "11%", left: "15%" }}
-              autoPlay
-              playsInline
-              muted
-              loop
-            >
-              <Source src={videoSrc} type="video/mp4" />
-            </Video>
-          </SourceContainer>
-        ) : (
-          <SourceContainer>
-            <Image src={imageSrc} />
-            <Video autoPlay playsInline muted loop>
-              <Source src={videoSrc} type="video/mp4" />
-            </Video>
-          </SourceContainer>
-        )}
+        <SourceContainer>
+          <Image src={imageSrc} />
+          <Video isThird={isThird} autoPlay playsInline muted loop>
+            <Source src={videoSrc} type="video/mp4" />
+          </Video>
+        </SourceContainer>
       </Wrapper>
     </Container>
   );
