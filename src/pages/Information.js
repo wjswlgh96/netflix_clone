@@ -7,7 +7,7 @@ import InformationEpisode from "../components/information/InformationEpisode";
 import InformationFooter from "../components/information/InformationFooter";
 
 const Container = styled.div`
-  width: 100%;
+  width: 100vw;
   height: 100%;
   display: block;
   position: fixed;
@@ -37,7 +37,7 @@ const Wrapper = styled.div`
   z-index: 15;
 `;
 
-function Information({ setIsModal, movie }) {
+function Information({ setIsModal, movie, myList, setMyList }) {
   const [isEnter, setIsEnter] = useState(false);
   const [isOther, setIsOther] = useState(false);
   const scrollY = useRef();
@@ -78,7 +78,12 @@ function Information({ setIsModal, movie }) {
   return (
     <Container ref={scrollY} isOther={isOther} onClick={onClick}>
       <Wrapper onMouseOver={onOver} onMouseOut={onOut}>
-        <InformationIntro movie={movie[0]} setIsModal={setIsModal} />
+        <InformationIntro
+          movie={movie[0]}
+          myList={myList}
+          setMyList={setMyList}
+          setIsModal={setIsModal}
+        />
         <InformationMiddle setIsOther={setIsOther} movie={movie[0]} />
         <InformationEpisode movie={movie[0]} />
         <InformationFooter movie={movie[0]} />

@@ -7,6 +7,7 @@ import Landing from "./pages/Landing";
 import Login from "./pages/Login";
 import Main from "./pages/Main";
 import Play from "./pages/Play";
+import MyList from "./pages/MyList";
 
 import { movies } from "./dummydata/dummyDatas";
 
@@ -18,6 +19,7 @@ const Container = styled.div`
 
 function App() {
   const [movieList, setMovieList] = useState(movies);
+  const [myList, setMyList] = useState([]);
 
   return (
     <Container>
@@ -26,8 +28,27 @@ function App() {
         <Switch>
           <Route exact path="/" component={Landing} />
           <Route path="/login" component={Login} />
-          <Route path="/main" render={() => <Main movieList={movieList} />} />
+          <Route
+            path="/main"
+            render={() => (
+              <Main
+                movieList={movieList}
+                myList={myList}
+                setMyList={setMyList}
+              />
+            )}
+          />
           <Route path="/play" component={Play} />
+          <Route
+            path="/mylist"
+            render={() => (
+              <MyList
+                movieList={movieList}
+                myList={myList}
+                setMyList={setMyList}
+              />
+            )}
+          />
         </Switch>
       </Router>
     </Container>

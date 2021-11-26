@@ -15,7 +15,7 @@ const Container = styled.div`
   overflow-y: scroll;
 `;
 
-function Main({ movieList }) {
+function Main({ movieList, myList, setMyList }) {
   const [isScroll, setIsScroll] = useState(false);
   const [isModal, setIsModal] = useState(false);
   const [currIdx, setCurrIdx] = useState(-1);
@@ -33,6 +33,8 @@ function Main({ movieList }) {
       {isModal ? (
         <>
           <Information
+            setMyList={setMyList}
+            myList={myList}
             movie={movieList.filter((el) => {
               return el.id === currIdx;
             })}
@@ -44,6 +46,7 @@ function Main({ movieList }) {
             return (
               <PlayList
                 key={idx}
+                setMyList={setMyList}
                 setIsModal={setIsModal}
                 setCurrIdx={setCurrIdx}
                 titleValue={el}
@@ -55,12 +58,14 @@ function Main({ movieList }) {
         </>
       ) : (
         <>
-          <Header isScroll={isScroll} />
+          <Header isScroll={isScroll} isMain={true} />
           <MainIntro setIsModal={setIsModal} setCurrIdx={setCurrIdx} />
           {mainTitle.map((el, idx) => {
             return (
               <PlayList
                 key={idx}
+                myList={myList}
+                setMyList={setMyList}
                 setIsModal={setIsModal}
                 setCurrIdx={setCurrIdx}
                 titleValue={el}

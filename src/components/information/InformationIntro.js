@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styled from "styled-components";
 
 import { PlayFill } from "@styled-icons/bootstrap/PlayFill";
 import { Like } from "@styled-icons/boxicons-regular/Like";
 import { Dislike } from "@styled-icons/boxicons-regular/Dislike";
 import { Plus } from "@styled-icons/boxicons-regular/Plus";
+import { Check2 } from "@styled-icons/bootstrap/Check2";
 import { SpeakerMute } from "@styled-icons/fluentui-system-regular/SpeakerMute";
 
 const Container = styled.div`
@@ -136,6 +137,29 @@ const PlusImage = styled(Plus)`
   }
 `;
 
+const CheckImage = styled(Check2)`
+  width: 6%;
+  color: white;
+  background-color: #2a2a2a;
+  border: 2px solid rgba(255, 255, 255, 0.7);
+  border-radius: 45px;
+  padding: 0.3rem;
+  margin-right: 0.4rem;
+
+  :hover {
+    cursor: pointer;
+    border-color: white;
+  }
+
+  @media screen and (max-width: 1023px) {
+    width: 2%;
+  }
+
+  @media screen and (max-width: 767px) {
+    width: 3%;
+  }
+`;
+
 const LikeImage = styled(Like)`
   width: 6%;
   color: white;
@@ -194,8 +218,24 @@ const MuteImage = styled(SpeakerMute)`
   }}
 `;
 
-export default function InformationIntro({ movie, setIsModal = () => {} }) {
+export default function InformationIntro({
+  movie,
+  setIsModal = () => {},
+  myList = [],
+  setMyList = () => {},
+}) {
   const [isHover, setIsHover] = useState(false);
+  const [isOverlap, setIsOverlap] = useState(false);
+
+  useEffect(() => {
+    myList.map((el) => {
+      if (el === movie.id) {
+        setIsOverlap(true);
+      } else {
+        setIsOverlap(false);
+      }
+    });
+  }, [isOverlap]);
 
   const onMuteHover = (e) => {
     e.preventDefault();
@@ -238,7 +278,27 @@ export default function InformationIntro({ movie, setIsModal = () => {} }) {
                 <PlayImage />
                 <PlaySpan>재생</PlaySpan>
               </PlayButton>
-              <PlusImage />
+              {isOverlap ? (
+                <CheckImage
+                  onClick={(e) => {
+                    e.preventDefault();
+                    const arr = myList.filter((el) => {
+                      return el !== movie.id;
+                    });
+
+                    setMyList(arr);
+                    setIsOverlap(false);
+                  }}
+                />
+              ) : (
+                <PlusImage
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setMyList((curr) => [...curr, movie.id]);
+                    setIsOverlap(true);
+                  }}
+                />
+              )}
               <LikeImage />
               <DislikeImage />
             </BottomLeftWrapper>

@@ -13,28 +13,69 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   border-radius: 4px;
+  animation: SizeUp 0.2s linear;
+  animation-fill-mode: forwards;
+
+  @keyframes SizeUp {
+    0% {
+      transform: scale(1);
+      padding: 0;
+    }
+
+    100% {
+      transform: scale(1.1);
+      padding: 0 3rem 2rem 0.9rem;
+    }
+  }
+
+  @keyframes SizeUpTablet {
+    0% {
+      transform: scale(1);
+      padding: 0;
+    }
+
+    100% {
+      transform: scale(1.1);
+      padding: 0 1rem 2rem 1rem;
+    }
+  }
+
+  @keyframes SizeUpMobile {
+    0% {
+      transform: scale(1);
+      padding: 0;
+    }
+
+    100% {
+      transform: scale(1.1);
+      padding: 0 4rem 2rem 2rem;
+    }
+  }
+
+  @media screen and (max-width: 1023px) {
+    animation: SizeUpTablet 0.2s linear;
+    animation-fill-mode: forwards;
+  }
+
+  @media screen and (max-width: 767px) {
+    animation: SizeUpMobile 0.2s linear;
+    animation-fill-mode: forwards;
+  }
 `;
 
 const ImageWrapper = styled.div`
   width: 100%;
-  margin-bottom: 0.3rem;
 `;
 
 const Image = styled.img`
-  width: 16%;
+  width: 100%;
   border-top-right-radius: 4px;
-
-  @media screen and (max-width: 1023px) {
-    width: 23%;
-  }
-
-  @media screen and (max-width: 767px) {
-    width: 28%;
-  }
+  border-radius: 4px;
+  border-bottom: 2px solid white;
 `;
 
 const Wrapper = styled.div`
-  width: 90%;
+  width: 99%;
   margin-bottom: 0.3rem;
   display: flex;
   flex-direction: column;
@@ -52,7 +93,7 @@ const IconContent = styled.div`
 `;
 
 const PlayImage = styled(PlayFill)`
-  width: 2%;
+  width: 10%;
   margin-right: 0.4rem;
   background-color: white;
   border-radius: 45px;
@@ -63,39 +104,16 @@ const PlayImage = styled(PlayFill)`
   }
 
   @media screen and (max-width: 1023px) {
-    width: 3%;
+    width: 12%;
   }
 
   @media screen and (max-width: 767px) {
-    width: 4%;
-  }
-`;
-
-const PlusImage = styled(Plus)`
-  width: 1.2%;
-  color: white;
-  background-color: #2a2a2a;
-  border: 2px solid rgba(255, 255, 255, 0.7);
-  border-radius: 45px;
-  padding: 0.3rem;
-  margin-right: 0.4rem;
-
-  :hover {
-    cursor: pointer;
-    border-color: white;
-  }
-
-  @media screen and (max-width: 1023px) {
-    width: 2%;
-  }
-
-  @media screen and (max-width: 767px) {
-    width: 3%;
+    width: 11.5%;
   }
 `;
 
 const CheckImage = styled(Check2)`
-  width: 1.2%;
+  width: 6%;
   color: white;
   background-color: #2a2a2a;
   border: 2px solid rgba(255, 255, 255, 0.7);
@@ -109,16 +127,12 @@ const CheckImage = styled(Check2)`
   }
 
   @media screen and (max-width: 1023px) {
-    width: 2%;
-  }
-
-  @media screen and (max-width: 767px) {
-    width: 3%;
+    width: 7.5%;
   }
 `;
 
 const LikeImage = styled(Like)`
-  width: 1.2%;
+  width: 6%;
   color: white;
   background-color: #2a2a2a;
   border: 2px solid rgba(255, 255, 255, 0.7);
@@ -132,22 +146,18 @@ const LikeImage = styled(Like)`
   }
 
   @media screen and (max-width: 1023px) {
-    width: 2%;
-  }
-
-  @media screen and (max-width: 767px) {
-    width: 3%;
+    width: 7.5%;
   }
 `;
 
 const DislikeImage = styled(Dislike)`
-  width: 1.2%;
+  width: 6%;
   color: white;
   background-color: #2a2a2a;
   border: 2px solid rgba(255, 255, 255, 0.7);
   border-radius: 45px;
   padding: 0.3rem;
-  margin-right: 5rem;
+  margin-right: 6rem;
 
   :hover {
     cursor: pointer;
@@ -155,17 +165,17 @@ const DislikeImage = styled(Dislike)`
   }
 
   @media screen and (max-width: 1023px) {
-    margin-right: 7rem;
-    width: 2%;
+    width: 7.5%;
+    margin-right: 6.5rem;
   }
 
   @media screen and (max-width: 767px) {
-    width: 3%;
+    margin-right: 10rem;
   }
 `;
 
 const DownImage = styled(ArrowDown)`
-  width: 1.2%;
+  width: 6%;
   color: white;
   background-color: #2a2a2a;
   border: 2px solid rgba(255, 255, 255, 0.7);
@@ -178,11 +188,10 @@ const DownImage = styled(ArrowDown)`
   }
 
   @media screen and (max-width: 1023px) {
-    width: 2%;
+    width: 7.5%;
   }
 
   @media screen and (max-width: 767px) {
-    width: 3%;
   }
 `;
 
@@ -202,7 +211,7 @@ const TitleAge = styled.div`
   position: relative;
   top: 0.3vw;
   display: inline-block;
-  width: 0.9%;
+  width: 5%;
   border-radius: 3px;
   color: white;
   padding: 0.2rem 0.18rem 0 0.2rem;
@@ -240,16 +249,14 @@ const TitleAge = styled.div`
   }};
 
   @media screen and (max-width: 1023px) {
-    width: 1.5%;
+    width: 6.5%;
   }
 
   @media screen and (max-width: 767px) {
-    width: 2%;
   }
 `;
 
 const TitleTime = styled.span`
-  width: 11%;
   color: white;
   width: 100%;
   font-size: 0.65rem;
@@ -265,52 +272,30 @@ const TitleHD = styled.span`
 `;
 
 const GenreWrapper = styled.div`
-  width: 18%;
+  width: 100%;
   margin-top: 0.5rem;
-
-  @media screen and (max-width: 1023px) {
-    width: 25%;
-  }
-
-  @media screen and (max-width: 767px) {
-    width: 31%;
-  }
 `;
 
 const GenreContent = styled.span`
-  width: 11%;
   color: white;
-  width: 100%;
   font-size: 0.65rem;
   margin-right: 0.2rem;
   white-space: normal;
 `;
 
-export default function HoverImage({
+export default function ListHoverImage({
   setCurrIdx,
   imageSrc,
   movie,
   myList,
+  setMyList,
   setIsModal,
-  setMyList = () => {},
 }) {
   const onClickDown = (e) => {
     e.preventDefault();
     setCurrIdx(movie.id);
     setIsModal(true);
   };
-
-  const [isOverlap, setIsOverlap] = useState(false);
-
-  useEffect(() => {
-    myList.map((el) => {
-      if (el === movie.id) {
-        setIsOverlap(true);
-      } else {
-        setIsOverlap(false);
-      }
-    });
-  }, [isOverlap, myList]);
 
   return (
     <Container>
@@ -326,27 +311,16 @@ export default function HoverImage({
                 window.location.replace(movie.link);
               }}
             />
-            {isOverlap ? (
-              <CheckImage
-                onClick={(e) => {
-                  e.preventDefault();
-                  const arr = myList.filter((el) => {
-                    return el !== movie.id;
-                  });
+            <CheckImage
+              onClick={(e) => {
+                e.preventDefault();
+                const arr = myList.filter((el) => {
+                  return el !== movie.id;
+                });
 
-                  setMyList(arr);
-                  setIsOverlap(false);
-                }}
-              />
-            ) : (
-              <PlusImage
-                onClick={(e) => {
-                  e.preventDefault();
-                  setMyList((curr) => [...curr, movie.id]);
-                  setIsOverlap(true);
-                }}
-              />
-            )}
+                setMyList(arr);
+              }}
+            />
             <LikeImage />
             <DislikeImage />
             <DownImage onClick={onClickDown} />

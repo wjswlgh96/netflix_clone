@@ -75,6 +75,7 @@ const _Slider = styled(Slider)`
     padding: 2rem 0 2rem 0;
 
     :hover {
+      cursor: pointer;
       transform: scale(1.2);
       transition: transform 0.2s ease-in-out;
 
@@ -213,7 +214,14 @@ const RightImage = styled(NavigateNext)`
   height: 6.5vw;
 `;
 
-function PlayList({ setCurrIdx, titleValue, movieList, setIsModal }) {
+function PlayList({
+  setCurrIdx,
+  titleValue,
+  movieList,
+  setIsModal,
+  myList,
+  setMyList,
+}) {
   const [isHover, setIsHover] = useState(false);
   const [isImgHover, setImgHover] = useState(false);
   const [currImgIdx, setCurrImgIdx] = useState(-1);
@@ -228,10 +236,6 @@ function PlayList({ setCurrIdx, titleValue, movieList, setIsModal }) {
     setIsHover(false);
   };
 
-  const onClickImage = (e, idx) => {
-    e.preventDefault();
-  };
-
   const onMouseEnterImg = (e, idx) => {
     e.preventDefault();
     setImgHover(true);
@@ -239,7 +243,6 @@ function PlayList({ setCurrIdx, titleValue, movieList, setIsModal }) {
   };
 
   const onMouseLeaveImg = (e) => {
-    console.log("bye");
     e.preventDefault();
     setImgHover(false);
     setCurrImgIdx(-1);
@@ -291,16 +294,15 @@ function PlayList({ setCurrIdx, titleValue, movieList, setIsModal }) {
                 >
                   {isImgHover && idx === currImgIdx ? (
                     <HoverImage
+                      myList={myList}
+                      setMyList={setMyList}
                       setCurrIdx={setCurrIdx}
                       setIsModal={setIsModal}
                       imageSrc={el.listimage}
                       movie={el}
                     />
                   ) : (
-                    <Image
-                      onClick={(e) => onClickImage(e, idx)}
-                      src={el.listimage}
-                    />
+                    <Image src={el.listimage} />
                   )}
                 </ImageWrapper>
               );
